@@ -10,4 +10,4 @@ Outside work I run a [small home lab](/series/home-lab/), keep a commute tracker
 
 My latest talk, *Sleeping well with on-call*, is on the home page, with [the notes behind it](/blog/sleeping-well-with-on-call/).
 
-This site is built with [Hugo](https://gohugo.io/) and the Breeze Plasma theme. It has no trackers, no web fonts and no third-party requests until you press play on a video.
+This site is built with [Hugo](https://gohugo.io/) and the Breeze Plasma theme. It has no trackers, no web fonts and no third-party requests until you press play on a video. More in the [colophon](/colophon/).

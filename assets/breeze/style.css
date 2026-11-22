@@ -486,9 +486,10 @@ html:not(.js) .search { display: none; }
 .prose pre { overflow-x: auto; padding: 16px 20px; border: 1px solid var(--code-edge); border-radius: 10px; background: var(--code-bg); color: var(--code-fg); font-size: .8em; line-height: 1.6; tab-size: 4; }
 .prose pre code { padding: 0; background: none; font-size: inherit; }
 .prose hr { width: 30%; height: 1px; margin: 2.4em auto; border: 0; background: var(--line); }
-.prose img { max-width: 100%; height: auto; border-radius: 10px; }
-.prose figure img { border: 1px solid var(--line); }
-.prose figcaption { margin-top: 8px; font-family: var(--sans); font-size: .875rem; color: var(--muted); }
+.prose img, .page img { max-width: 100%; height: auto; border-radius: 10px; }
+.page figure { margin: 0 0 14px; }
+.prose figure img, .page figure img { border: 1px solid var(--line); }
+.prose figcaption, .page figcaption { margin-top: 8px; font-family: var(--sans); font-size: .875rem; color: var(--muted); }
 .prose table { display: block; overflow-x: auto; border-collapse: collapse; font-family: var(--sans); font-size: .9375rem; }
 .prose th, .prose td { padding: 6px 12px; border-bottom: 1px solid var(--line); text-align: left; }
 .prose th { font-weight: 700; }
