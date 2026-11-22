@@ -14,12 +14,14 @@
 {{- $more := slice -}}
 {{- if ne $cfg.links false -}}
   {{- with $archive }}{{ $more = $more | append (dict "url" .RelPermalink "text" (T "all_posts_arrow" (dict "Count" (len (partial "breeze/posts.html" $.page))))) }}{{ end -}}
+  {{- if ne $cfg.serieslinks false -}}
   {{- with index site.Taxonomies $stax -}}
     {{- range $name, $wp := . -}}
       {{- if ge (len $wp.Pages) $smin -}}
         {{- $more = $more | append (dict "url" $wp.Page.RelPermalink "text" (T "parts_count" (dict "Title" $wp.Page.LinkTitle "Count" (len $wp.Pages)))) -}}
       {{- end -}}
     {{- end -}}
+  {{- end -}}
   {{- end -}}
   {{- range site.MainSections -}}
     {{- $s := partialCached "breeze/section-info.html" . . -}}

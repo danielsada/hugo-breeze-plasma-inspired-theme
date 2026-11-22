@@ -137,7 +137,7 @@ Without a main menu, Places lists the All-posts page and every main section. Whe
   widget = "latest"   # count, sections, title
   count = 3
 [[params.home.main]]
-  widget = "recent"   # offset, count, sections, title, links = false
+  widget = "recent"   # offset, count, sections, title, links = false, serieslinks = false
 [[params.home.main]]
   widget = "series"   # title, sort = "latest" | "name", limit, counts = true, date = "latest" | "first" | "none"
 [[params.home.side]]
@@ -149,7 +149,7 @@ Without a main menu, Places lists the All-posts page and every main section. Whe
   section = "notas"
 ```
 
-Add `enable = false` to hide a widget. The `series` widget lists every series (with at least `series.min` posts): name, number of parts and the date of its latest (or first) part. It is left out when there are none.
+Add `enable = false` to hide a widget. The `series` widget lists every series (with at least `series.min` posts): name, number of parts and the date of its latest (or first) part. It is left out when there are none. When the `series` widget is on the page, set `serieslinks = false` on `recent` so its "more" row doesn't repeat the series (it keeps "All posts →" and the section links).
 
 To add your own widget, create `layouts/_partials/home/<name>.html` in your site. It's called with `(dict "page" . "cfg" <its table>)`. The `main` widgets form the left column on wide screens. On phones they come first, followed by the `side` widgets.
 

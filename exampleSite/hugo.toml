@@ -119,6 +119,7 @@ capitalizeListTitles = false   # keep tag/series names as written ("homelab", no
       widget = "recent"
       offset = 3
       count = 5
+      serieslinks = false        # the series widget below lists them
     [[params.home.main]]
       widget = "series"
       sort = "latest"            # latest | name
