@@ -55,6 +55,7 @@ capitalizeListTitles = false   # keep tag/series names as written ("homelab", no
   [params.author]
     name = "Alex Moreno"
     email = "hello@example.org"
+    emaillabel = "hello [at] example.org"   # shown instead of the address; links still use mailto:
     page = "/about"
 
   [params.colors]
@@ -88,6 +89,8 @@ capitalizeListTitles = false   # keep tag/series names as written ("homelab", no
     anchors = true
     postnav = true
     byline = true
+    shiftheadings = "auto"       # false | true | "auto": "# " headings in content render as <h2> (auto: only where used)
+    toclevels = [2, 3]           # heading levels in "On this page" (after shifting)
 
   [params.images]
     maxwidth = 960
