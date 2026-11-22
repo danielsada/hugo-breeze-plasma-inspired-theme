@@ -4,6 +4,8 @@ A calm, KDE Plasma / Breeze-inspired blog theme. The wallpaper sits behind one t
 
 ![The example site's home page, half in light mode and half in dark mode](images/screenshot.png)
 
+**[Live demo →](https://danielsada.github.io/hugo-breeze-plasma-inspired-theme/)** (the `exampleSite/`, rebuilt on every push by `.github/workflows/pages.yml`)
+
 **Contents:** [Highlights](#highlights) · [Screenshots](#screenshots) · [Quick start](#quick-start) · [Install](#install) · [Content model](#content-model) · [Configuration](#configuration) · [Recipes](#recipes) · [Performance, privacy and accessibility](#performance-privacy-and-accessibility) · [Development](#development) · [Credits](#credits-and-trademarks)
 
 ## Highlights
@@ -320,6 +322,8 @@ Then add it to the config:
 
 **Embed a talk in a post** with `{{</* youtube-lite id="…" title="…" duration="…" poster="poster.jpg" */>}}`. The poster can be a page-bundle image, which is resized to a small WebP.
 
+**Serve the site from a sub-path** (e.g. a GitHub Pages project site at `https://you.github.io/repo/`). Set `baseURL` to the full URL, including the sub-path. The theme builds every link from the page URLs, and Markdown links written from the root (`[about](/about/)`) are resolved to the page or prefixed with the sub-path. This repo's `.github/workflows/pages.yml` deploys the example site this way and can be copied for your own site.
+
 ## Performance, privacy and accessibility
 
 Measured on the example site with Hugo 0.170.1 in Edge, with an empty cache. The numbers include every asset the page loads and are uncompressed (gzip roughly halves them).
@@ -360,7 +364,7 @@ layouts/             baseof, home, page, section, term, taxonomy, 404, rss.xml
   _partials/views/   post, page, archive, projects, terms
   _partials/home/    intro, latest, recent, series, project, talk, section
   _partials/hooks/   head-end, body-end, post-end (empty; override in your site)
-  _markup/           heading and image render hooks
+  _markup/           heading, image and link render hooks
   _shortcodes/       youtube-lite
 exampleSite/         a complete demo site that uses every feature
 scripts/             screenshots.py (regenerates the images in this README)
