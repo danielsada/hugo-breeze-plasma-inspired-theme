@@ -13,7 +13,7 @@
 {{- $smin := $scfg.min | default 2 -}}
 {{- $more := slice -}}
 {{- if ne $cfg.links false -}}
-  {{- with $archive }}{{ $more = $more | append (dict "url" .RelPermalink "text" (T "all_posts_arrow")) }}{{ end -}}
+  {{- with $archive }}{{ $more = $more | append (dict "url" .RelPermalink "text" (T "all_posts_arrow" (dict "Count" (len (partial "breeze/posts.html" $.page))))) }}{{ end -}}
   {{- with index site.Taxonomies $stax -}}
     {{- range $name, $wp := . -}}
       {{- if ge (len $wp.Pages) $smin -}}

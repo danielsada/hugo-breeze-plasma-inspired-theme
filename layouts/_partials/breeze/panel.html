@@ -57,7 +57,11 @@
         {{- partial "breeze/icon.html" $e.icon -}}
         {{- if and $e.lang (ne $e.lang $L.site) (ne $e.lang site.Language.Name) }}<span lang="{{ $e.lang }}">{{ $e.name }}</span>{{ else }}{{ $e.name }}{{ end -}}
         {{- with $e.badge }} <span class="tag">{{ . }}</span>{{ end -}}
-        {{- if and $e.count $e.page }}<span class="n">{{ len $e.page.RegularPagesRecursive }}</span>{{ end -}}
+        {{- if and $e.count $e.page -}}
+          {{- $n := len $e.page.RegularPagesRecursive -}}
+          {{- if and $archive (eq $e.page.RelPermalink $archive.RelPermalink) }}{{ $n = len (partial "breeze/posts.html" $p) }}{{ end -}}
+          <span class="n">{{ $n }}</span>
+        {{- end -}}
       </a></li>
     {{- end }}
     </ul>

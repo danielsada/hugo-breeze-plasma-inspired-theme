@@ -129,6 +129,7 @@ capitalizeListTitles = false   # keep tag/series names as written ("homelab", no
     weight = 10
     [menus.main.params]
       icon = "blog"
+      count = true                 # on the All-posts entry: every post
   [[menus.main]]
     name = "Notas"
     pageRef = "/notas"

@@ -114,7 +114,7 @@ All options live under `[params]`. Every one is optional.
 
 - `params.icon` — the name of any icon;
 - `params.badge` — e.g. "ES";
-- `params.count` — show the section's post count;
+- `params.count` — show the section's post count (on the All-posts entry it counts every post);
 - `params.lang` — the language of the label.
 
 `[[menus.social]]` becomes the **Elsewhere** icon row; set `params.icon` on each entry. The RSS icon is added automatically.
@@ -155,7 +155,7 @@ The theme ships: blog, notas, series, apps, user, mail, github, linkedin, x, glo
 
 ### Languages
 
-UI strings live in `i18n/en.toml` and `i18n/es.toml`. To override any string for your site's language, put it in your own `i18n/<lang>.toml`.
+UI strings live in `i18n/en.toml` and `i18n/es.toml`. To override any string for your site's language, put it in your own `i18n/<lang>.toml`. `all_posts_arrow` receives `.Count` (the number of posts), e.g. `other = "All {{ .Count }} posts →"`.
 
 A section in a different language than the site (`params.lang` in its `_index.md`) uses that language's strings. The theme mounts its `i18n/` folder at `data/breeze/i18n/` for this. To add or override strings for such a section, create `data/breeze/i18n/<lang>.toml` in your site, using the same format.
 

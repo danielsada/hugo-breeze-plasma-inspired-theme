@@ -7,7 +7,7 @@
 {{- $short := $dates.short | default "2 Jan 2006" -}}
 {{- with first $n $pages }}
 <section class="card latest" aria-labelledby="latest-h">
-  <div class="card-h"><h2 id="latest-h">{{ $cfg.title | default (T "latest_posts") }}</h2>{{ with $archive }}<a href="{{ .RelPermalink }}">{{ T "all_posts_arrow" }}</a>{{ end }}</div>
+  <div class="card-h"><h2 id="latest-h">{{ $cfg.title | default (T "latest_posts") }}</h2>{{ with $archive }}<a href="{{ .RelPermalink }}">{{ T "all_posts_arrow" (dict "Count" (len (partial "breeze/posts.html" $.page))) }}</a>{{ end }}</div>
   <ol>
     {{- range . }}
     {{- $L := partial "breeze/lang.html" . }}
