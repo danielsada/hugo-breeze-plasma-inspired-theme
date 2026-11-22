@@ -1,4 +1,4 @@
-# Breeze Plasma — a Hugo theme
+# Breeze Plasma: a Hugo theme
 
 A calm, KDE Plasma / Breeze-inspired blog theme. The wallpaper sits behind one translucent navigation panel, and everything you read is on opaque Breeze cards. It respects your reader: light/dark mode follows the OS, it loads no web fonts, it makes no third-party requests, and every page typically weighs under 100 KB.
 
@@ -44,9 +44,9 @@ A calm, KDE Plasma / Breeze-inspired blog theme. The wallpaper sits behind one t
 | | |
 |---|---|
 | ![All-posts archive filtered to a series, with the Show pane](docs/images/archive.png) | ![A post in dark mode with its "On this page" outline and a code block](docs/images/post-dark.png) |
-| **Archive** — Show pane, filters, search | **Post** — outline, code, dark mode |
+| **Archive:** Show pane, filters, search | **Post:** outline, code, dark mode |
 | ![Projects page grouped by status](docs/images/projects.png) | ![The Spanish Notas section in dark mode](docs/images/notas-dark.png) |
-| **Projects** — grouped by status | **A second-language section** — Spanish UI and dates |
+| **Projects:** grouped by status | **A second-language section:** Spanish UI and dates |
 
 ![Three phones: the home page, a post with its table of contents open, and the navigation drawer](docs/images/mobile.png)
 
@@ -192,12 +192,12 @@ All options live under `[params]`. Every one is optional.
 
 | Option | Default | What it does |
 |---|---|---|
-| `description`, `tagline` | — | Meta description; the subtitle under your name and the home kicker |
+| `description`, `tagline` | none | Meta description; the subtitle under your name and the home kicker |
 | `logo` | monogram | An `assets/` path (processed) or a `static/` path |
 | `logowidth`, `logoplate`, `logoname` | `64`, `true`, `true` | Logo width in px, whether it sits on a light plate, and whether your name is shown beside it |
 | `colorscheme` | `auto` | `auto`, `light` or `dark` |
-| `favicon`, `ogimage`, `titlesuffix`, `crumbroot` | — | Head and breadcrumb details |
-| `author.name`, `author.email`, `author.page` | — | Byline, contact and the About link |
+| `favicon`, `ogimage`, `titlesuffix`, `crumbroot` | none | Head and breadcrumb details |
+| `author.name`, `author.email`, `author.page` | none | Byline, contact and the About link |
 | `colors.light.accent` / `.ink`, `colors.dark.accent` / `.ink` | Purple | Accent colours. `ink` is the text and focus-ring colour; keep it at least 4.5:1 against the card. |
 | `colors.wall` | `#3d6fd6` | Wallpaper base colour |
 | `wallpaper` | `breeze/wallpaper.svg` | An `assets/` path, a static path, or `"none"` |
@@ -217,16 +217,16 @@ All options live under `[params]`. Every one is optional.
 
 `[[menus.main]]` becomes the panel's **Places** list. Each entry can set:
 
-- `params.icon` — the name of any icon;
-- `params.badge` — e.g. "ES";
-- `params.count` — show the section's post count (on the All-posts entry it counts every post);
-- `params.lang` — the language of the label.
+- `params.icon`: the name of any icon;
+- `params.badge`: a short label, e.g. "ES";
+- `params.count`: show the section's post count (on the All-posts entry it counts every post);
+- `params.lang`: the language of the label.
 
 `[[menus.social]]` becomes the **Elsewhere** icon row; set `params.icon` on each entry. The RSS icon is added automatically.
 
 Without a main menu, Places lists the All-posts page and every main section. When you're on a post, the Places entry it belongs to is marked current.
 
-**Projects box.** With `[params.panel.projects] enable = true`, the panel also lists your projects from `data/projects.yaml` below Places (and below "On this page" on posts). It shows compact rows — icon, name and a green dot for the `live` status — featured first, then newest (`since`) first, up to `limit`. When there are more, it adds "All projects (N) →". Rows link to the project's `url`, else its `writeup`, else its row on the projects page.
+**Projects box.** With `[params.panel.projects] enable = true`, the panel also lists your projects from `data/projects.yaml` below Places (and below "On this page" on posts). It shows compact rows (icon, name and a green dot for the `live` status), featured first, then newest (`since`) first, up to `limit`. When there are more, it adds "All projects (N) →". Rows link to the project's `url`, else its `writeup`, else its row on the projects page.
 
 - The box is a collapsible section with its own scroll area, so 10–20 projects never push Places out of place.
 - On posts it starts collapsed (`collapse = false` to keep it open), because the outline needs the room. Set `pages = "nonpost"` to leave it off posts entirely. In the mobile drawer it starts open.
