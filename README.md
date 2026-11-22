@@ -1,13 +1,52 @@
 # Breeze Plasma — a Hugo theme
 
-A calm, KDE Plasma / Breeze-inspired blog theme. The wallpaper sits behind one translucent navigation panel, and everything you read is on opaque Breeze cards. It includes:
+A calm, KDE Plasma / Breeze-inspired blog theme. The wallpaper sits behind one translucent navigation panel, and everything you read is on opaque Breeze cards. It respects your reader: light/dark mode follows the OS, it loads no web fonts, it makes no third-party requests, and every page typically weighs under 100 KB.
 
-- **A Dolphin-style archive** with a *Show* pane (sections, series, tags and years, with counts), search, and URL-backed filters.
-- **Posts with an "On this page" outline** in the panel. On phones it becomes a collapsible table of contents.
-- **A projects page** and a **lazy YouTube player**. The player sends no requests to YouTube until you press play.
-- **Automatic light/dark**, no web fonts and no external requests. Pages typically weigh under 100 KB.
+![The example site's home page, half in light mode and half in dark mode](images/screenshot.png)
 
-Everything works without JavaScript. Sections, series and tags are real pages, and JavaScript only adds in-place filtering, search, the video player and the outline highlight.
+**Contents:** [Highlights](#highlights) · [Screenshots](#screenshots) · [Quick start](#quick-start) · [Install](#install) · [Content model](#content-model) · [Configuration](#configuration) · [Recipes](#recipes) · [Performance, privacy and accessibility](#performance-privacy-and-accessibility) · [Development](#development) · [Credits](#credits-and-trademarks)
+
+## Highlights
+
+**Reading**
+- Posts are set in a serif reading face at about 66 characters per line. Dark mode uses softened ink to avoid halation.
+- "On this page" sits in the panel on desktop and highlights the section you're reading. On phones it becomes a collapsible table of contents above the post.
+- A thin reading-progress bar, quiet `#` heading links, reading time, and "Part n of m" with previous/next links for series.
+- Syntax highlighting through Hugo's class-based highlighter, so the colours live in the stylesheet. Markdown images are resized to WebP, lazy-loaded and get captions from their titles.
+
+**Finding things**
+- A Dolphin-style archive window. A *Show* pane lists sections, series, tags and years with counts, and there's an instant filter box (press <kbd>/</kbd>). Filters are kept in the URL, so back/forward, reload and shared links work.
+- Every section, series and tag is a real page, so the theme works without JavaScript.
+- Places (your menu), an optional Projects box and your social links live in one translucent panel that stays put on every page. On phones it becomes a drawer.
+
+**Home page**
+- Widgets in two columns that you can reorder, hide or extend:
+  - `intro`, `latest` (headline posts), `recent` (compact list) and `series`;
+  - `project` (a featured project), `talk` (a privacy-friendly video), and `section` (e.g. a second-language section);
+  - your own widgets.
+
+**Projects and talks**
+- A projects page grouped by status, from `data/projects.yaml`, and a featured-project card on the home page.
+- Talks and videos use a lazy YouTube facade. YouTube receives nothing until the reader presses play; then the player loads from youtube-nocookie.
+
+**Languages**
+- English and Spanish UI strings ship with the theme, and every string can be overridden.
+- A section can be written in another language than the site (say, a Spanish `notas` section on an English blog). It gets its own `lang`, UI strings, dates and badge.
+
+**Yours to change**
+- Almost everything is a setting: identity, logo, accent colours, wallpaper, fonts, navigation, widgets, archive behaviour and post features.
+- There are hooks for `<head>`, the end of `<body>` and the end of every post, plus custom CSS, your own icons and alternative page layouts.
+
+## Screenshots
+
+| | |
+|---|---|
+| ![All-posts archive filtered to a series, with the Show pane](docs/images/archive.png) | ![A post in dark mode with its "On this page" outline and a code block](docs/images/post-dark.png) |
+| **Archive** — Show pane, filters, search | **Post** — outline, code, dark mode |
+| ![Projects page grouped by status](docs/images/projects.png) | ![The Spanish Notas section in dark mode](docs/images/notas-dark.png) |
+| **Projects** — grouped by status | **A second-language section** — Spanish UI and dates |
+
+![Three phones: the home page, a post with its table of contents open, and the navigation drawer](docs/images/mobile.png)
 
 ## Requirements
 
@@ -15,7 +54,7 @@ Everything works without JavaScript. Sections, series and tags are real pages, a
 
 The theme uses the template system introduced in 0.146 (`layouts/_partials`, `layouts/_markup` and so on). It also uses `hugo.Data` (0.156) and `Language.Name`/`Language.Locale` (0.158). Those versions deprecated `.Site.Data`, `languageCode` and `.Language.Lang`. On Netlify, set `HUGO_VERSION = "0.170.1"` (or newer).
 
-The CSS relies on `light-dark()`, `color-mix()`, container queries and `:has()`. All evergreen browsers have supported these since 2024.
+The CSS relies on `light-dark()`, `color-mix()`, container queries and `:has()`. These are supported by Chrome and Edge 123+, Firefox 121+ and Safari 17.5+, which covers every evergreen browser since mid-2024.
 
 ## Try the example site
 
@@ -34,6 +73,69 @@ hugo server -s exampleSite
 - code, quotes, tables, figures and a table of contents.
 
 `exampleSite/hugo.toml` lists every option with its default.
+
+## Quick start
+
+Start a new site and copy the theme in:
+
+```sh
+hugo new site my-blog && cd my-blog
+git clone --depth 1 https://github.com/danielsada/hugo-breeze-plasma-inspired-theme themes/hugo-breeze-plasma-inspired-theme
+rm -rf themes/hugo-breeze-plasma-inspired-theme/.git   # vendor it; no submodule needed
+```
+
+Then replace `hugo.toml` with this minimal configuration:
+
+```toml
+baseURL = "https://example.org/"
+title = "Your Name"
+locale = "en-US"
+theme = "hugo-breeze-plasma-inspired-theme"
+mainSections = ["blog"]
+capitalizeListTitles = false
+
+[taxonomies]
+  tag = "tags"
+  series = "series"
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+  [markup.goldmark.parser]
+    wrapStandAloneImageWithinParagraph = false
+
+[params]
+  tagline = "What you write about"
+  [params.author]
+    name = "Your Name"
+    email = "you@example.org"
+
+[[menus.main]]
+  name = "All posts"
+  pageRef = "/posts"
+  [menus.main.params]
+    icon = "blog"
+[[menus.main]]
+  name = "About"
+  pageRef = "/about"
+  [menus.main.params]
+    icon = "user"
+```
+
+Add an All-posts page, an About page and a first post, then run the server:
+
+```sh
+mkdir -p content/posts
+printf -- '---\ntitle: All posts\nparams:\n  archive: true\n---\n' > content/posts/_index.md
+printf -- '---\ntitle: About me\n---\nHello!\n' > content/about.md
+hugo new content blog/hello-world.md
+hugo server -D
+```
+
+From there, add widgets, projects and talks as described below. Every option is optional.
 
 ## Install
 
@@ -57,7 +159,7 @@ theme = "hugo-breeze-plasma-inspired-theme"
     path = "github.com/danielsada/hugo-breeze-plasma-inspired-theme"
 ```
 
-Then copy the `[markup]` block from `exampleSite/hugo.toml`. It enables class-based syntax highlighting, the table-of-contents levels and figures for titled images. Also consider `capitalizeListTitles = false`, which keeps tag and series names as you wrote them.
+Either way, copy the `[markup]` block from the quick start or from `exampleSite/hugo.toml`. It enables class-based syntax highlighting, the table-of-contents levels and figures for titled images. Also consider `capitalizeListTitles = false`, which keeps tag and series names as you wrote them.
 
 ## Content model
 
@@ -176,16 +278,103 @@ A section in a different language than the site (`params.lang` in its `_index.md
 - **Alternative page layouts:** set `params.view: <name>` on a page or section to render it with `layouts/_partials/views/<name>.html`, which receives the page as its context. The theme ships `post` and `page` (regular pages) and `projects` (any page). `archive` is used by sections and terms, and `terms` by taxonomy pages; both expect what those templates pass them, so they can't be picked with `params.view` on another kind of page.
 - **Any other theme file:** copy it to the same path in your site and edit it.
 
-## Performance and privacy
+## Recipes
 
-- The CSS and JavaScript are minified; they and the icon sprite are fingerprinted (cache forever). Markdown images are resized to WebP and lazy-loaded.
-- Pages make no third-party requests. The YouTube iframe (youtube-nocookie) is created only after a click, and without JavaScript the player is a plain link.
-- Focus is always visible, and the mobile drawer traps focus and makes the page behind it inert. The heading structure and lang attributes are correct, and contrast is at least 4.5:1 for text.
+**Use your own accent colour.** Pick a colour for each scheme, plus a darker (light mode) or lighter (dark mode) `ink` for text, links and focus rings. Keep `ink` at 4.5:1 or more against the card (`#fcfcfc` light, `#1f2226` dark).
+
+```toml
+[params.colors.light]
+  accent = "#1d99f3"   # Breeze blue
+  ink = "#0f5e9c"
+[params.colors.dark]
+  accent = "#3daee9"
+  ink = "#93cef5"
+```
+
+**Change or drop the wallpaper.** Put an image in `assets/` and set `wallpaper = "images/wall.jpg"`, or use `wallpaper = "none"` with `colors.wall = "#2a2e32"` for a plain background.
+
+**Use your logo.** Use `logo = "images/logo.svg"` (an `assets/` path). Set `logoplate = false` if the logo has its own background, and `logoname = false` if it already contains your name. Without a logo, the theme draws a monogram from your initials.
+
+**Add a section in another language.** Create `content/notas/_index.md` with `params: { lang: es, badge: ES }`, add `"notas"` to `mainSections`, and optionally add a `section` widget for it on the home page. To add a language the theme doesn't ship, add `data/breeze/i18n/<lang>.toml` (copy `i18n/en.toml` and translate it).
+
+**Write your own home widget.** Create `layouts/_partials/home/now.html`:
+
+```go-html-template
+<section class="card" aria-labelledby="now-h">
+  <div class="card-h"><h2 id="now-h">{{ .cfg.title | default "Now" }}</h2></div>
+  <p>{{ .cfg.text }}</p>
+</section>
+```
+
+Then add it to the config:
+
+```toml
+[[params.home.side]]
+  widget = "now"
+  text = "Learning Zig, renovating a bike, reading Kill It with Fire."
+```
+
+**Add comments or a newsletter form** to every post with `layouts/_partials/hooks/post-end.html`. It receives the page, so `.Section`, `.Params` and so on work, and you can show the form on some sections only.
+
+**Add analytics or site verification** with `layouts/_partials/hooks/head-end.html`. The theme itself loads nothing from third parties.
+
+**Embed a talk in a post** with `{{</* youtube-lite id="…" title="…" duration="…" poster="poster.jpg" */>}}`. The poster can be a page-bundle image, which is resized to a small WebP.
+
+## Performance, privacy and accessibility
+
+Measured on the example site with Hugo 0.170.1 in Edge, with an empty cache. The numbers include every asset the page loads and are uncompressed (gzip roughly halves them).
+
+| Page | Weight |
+|---|---|
+| Home (with talk poster) | 62 KB |
+| All posts (16 posts, Show pane) | 75 KB |
+| A section, tag or series page | 64–73 KB |
+| A post | 59–65 KB (the style-check post reaches 107 KB once its lazy images load) |
+| Projects, About | 65 KB, 57 KB |
+
+About 48 KB of that is shared and cached across pages: the CSS (32 KB), JavaScript (8 KB), icon sprite (6 KB) and wallpaper (2 KB). These files are minified where relevant and fingerprinted, so they can be cached forever.
+
+**Privacy**
+- No web fonts, analytics, cookies or third-party requests.
+- The YouTube player is a poster and a link until it's clicked; only then is the youtube-nocookie iframe created. Without JavaScript it stays a plain link to YouTube.
+
+**Accessibility**
+- A skip link, labelled landmarks and a clean heading outline. Card links sit outside headings.
+- Focus is always visible. The mobile drawer moves focus to its close button, traps Tab, closes on Escape and returns focus, and makes the page behind it inert.
+- Archive filters announce their results through a live status line. Outline links move focus to the heading they point to.
+- `lang` attributes are set on whole pages, sections and individual titles in another language.
+- Text contrast is at least 4.5:1 in both schemes, including over the translucent panel. Touch targets are 44 px on coarse pointers. `prefers-reduced-motion` is respected.
 
 ### Known limitations
 
 - Year pages are year groups on the archive (`/posts/#y2025`), not separate pages. Hugo can't generate pages per year without front matter. Without JavaScript, a year link jumps to that year's group.
 - The panel is hidden off-canvas on phones by an inline `html.js` marker. If inline scripts run but `script.js` is blocked, the drawer can't open.
+
+## Development
+
+```
+assets/breeze/       style.css, script.js, wallpaper.svg, icons/*.svg (built into one sprite)
+i18n/                UI strings (en, es); also mounted as data/breeze/i18n/ for other-language sections
+layouts/             baseof, home, page, section, term, taxonomy, 404, rss.xml
+  _partials/breeze/  head, panel, identity, archive rows, helpers (lang, t, date, series…)
+  _partials/views/   post, page, archive, projects, terms
+  _partials/home/    intro, latest, recent, series, project, talk, section
+  _partials/hooks/   head-end, body-end, post-end (empty; override in your site)
+  _markup/           heading and image render hooks
+  _shortcodes/       youtube-lite
+exampleSite/         a complete demo site that uses every feature
+scripts/             screenshots.py (regenerates the images in this README)
+```
+
+- **Work on the theme:** `hugo server -s exampleSite`. The example site imports the theme from `../..` through a module replacement, so edits show up live.
+- **Refresh the screenshots:** after `hugo -s exampleSite`, run `python scripts/screenshots.py exampleSite/public` (needs `pip install playwright` and `playwright install chromium`). This rewrites `images/screenshot.png`, `images/tn.png` and `docs/images/`.
+- **Before sending a change,** check the example site at 390, 1024, 1440 and 2560 px in light and dark mode, and with JavaScript off. Also check that the build prints no warnings.
+
+## Credits and trademarks
+
+- Inspired by the look of [KDE Plasma](https://kde.org/plasma-desktop/)'s Breeze style and the Dolphin file manager. This is an independent project, not affiliated with or endorsed by KDE e.V. "KDE" and "Plasma" are trademarks of KDE e.V.
+- The wallpaper and icons are original drawings, except the GitHub mark, which comes from GitHub's [Octicons](https://github.com/primer/octicons) (MIT).
+- The example site's sample talk links to *Big Buck Bunny* (© Blender Foundation, CC BY 3.0) on YouTube.
 
 ## License
 
