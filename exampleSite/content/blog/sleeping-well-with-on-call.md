@@ -1,7 +1,7 @@
 ---
 title: Sleeping well with on-call
 date: 2025-05-12
-description: The notes behind my talk: alerts that mean something, runbooks that fit on a phone screen, and handovers that don't lose context.
+description: "The notes behind my talk: alerts that mean something, runbooks that fit on a phone screen, and handovers that don't lose context."
 tags: [reliability, on-call, talks]
 series: [On-call]
 ---
