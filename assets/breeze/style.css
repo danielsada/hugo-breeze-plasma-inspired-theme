@@ -512,6 +512,9 @@ html:not(.js) .search { display: none; }
 .post-nav a[rel="next"] { text-align: right; }
 .post-nav small { display: block; margin-bottom: 2px; font-size: .8125rem; color: var(--muted); }
 .post-nav b { font-weight: 600; line-height: 1.35; }
+.post-end { margin-top: 28px; font-size: .9375rem; }
+.post-end > :first-child { margin-top: 0; }
+.post-end > :last-child { margin-bottom: 0; }
 .byline { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .9375rem; color: var(--muted); }
 .byline p { margin: 0; }
 

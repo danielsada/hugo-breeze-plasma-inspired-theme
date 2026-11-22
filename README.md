@@ -163,6 +163,7 @@ A section in a different language than the site (`params.lang` in its `_index.md
 
 - **Extra CSS:** create `assets/css/custom.css`. It's appended to the theme's stylesheet.
 - **Head and body hooks:** override `layouts/_partials/hooks/head-end.html` and `hooks/body-end.html`.
+- **Post-end hook:** override `layouts/_partials/hooks/post-end.html` to add something to the end of every post (a newsletter form, comments, a "subscribe" line). It renders inside the post card, after the tags and the series/older/newer links, with the page as context. The theme's copy is empty; when your hook outputs nothing, no wrapper or spacing is added. `exampleSite/layouts/_partials/hooks/post-end.html` shows a one-line RSS invitation.
 - **Alternative page layouts:** set `params.view: <name>` on a page or section to render it with `layouts/_partials/views/<name>.html`, which receives the page as its context. The theme ships `post` and `page` (regular pages) and `projects` (any page). `archive` is used by sections and terms, and `terms` by taxonomy pages; both expect what those templates pass them, so they can't be picked with `params.view` on another kind of page.
 - **Any other theme file:** copy it to the same path in your site and edit it.
 

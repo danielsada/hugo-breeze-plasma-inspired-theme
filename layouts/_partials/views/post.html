@@ -95,6 +95,11 @@
     {{- end }}
   {{- end }}
 
+  {{- /* Extension point (newsletter form, comments…): wrapped only when the hook renders something */ -}}
+  {{- with partial "hooks/post-end.html" . | strings.TrimSpace }}
+  <div class="post-end">{{ . | safeHTML }}</div>
+  {{- end }}
+
   {{- if ne $cfg.byline false }}
   {{- $author := site.Params.author | default (dict) }}
   {{- with $author.name }}
