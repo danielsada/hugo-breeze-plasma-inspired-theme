@@ -103,6 +103,10 @@ capitalizeListTitles = false   # keep tag/series names as written ("homelab", no
     page = "/projects"
     statuses = ["Live", "Beta", "Paused", "Archived"]
 
+  # Left panel width on desktop (default 15.5rem). Uncomment to fit longer project names.
+  # [params.panel]
+  #   width = "17rem"
+
   # "Projects" box in the left panel, on every page (collapsed under "On this page" on posts).
   [params.panel.projects]
     enable = true
