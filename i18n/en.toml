@@ -27,6 +27,8 @@ other = "Breadcrumb"
 other = "All posts"
 [show]
 other = "Show"
+[go]
+other = "Go →"
 [show_posts]
 other = "Show posts"
 [tags]
@@ -173,6 +175,17 @@ other = "Newest first"
 # About
 [say_hi]
 other = "Say hi"
+
+# Dates (used for sections written in this language on a site in another language;
+# the site's own language uses params.dates and Hugo's localized month names)
+[date_short]
+other = "2 Jan 2006"
+[date_long]
+other = "2 January 2006"
+[months]
+other = "January,February,March,April,May,June,July,August,September,October,November,December"
+[months_short]
+other = "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec"
 
 # 404
 [not_found_title]

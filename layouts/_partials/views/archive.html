@@ -12,8 +12,8 @@
 {{- $lang := $L.name -}}
 {{- $cfg := site.Params.archive | default (dict) -}}
 {{- $tax := $cfg.taxonomy | default "tags" -}}
-{{- $showtags := $cfg.showtags | default 8 -}}
-{{- $rowtags := $cfg.rowtags | default 2 -}}
+{{- $showtags := 8 }}{{ if isset $cfg "showtags" }}{{ $showtags = $cfg.showtags }}{{ end -}}
+{{- $rowtags := 2 }}{{ if isset $cfg "rowtags" }}{{ $rowtags = $cfg.rowtags }}{{ end -}}
 {{- $scfg := site.Params.series | default (dict) -}}
 {{- $stax := $scfg.taxonomy | default "series" -}}
 {{- $smin := $scfg.min | default 2 -}}
@@ -83,6 +83,7 @@
         {{- range $groups }}<option value="year:{{ .Key }}" data-href="#y{{ .Key }}">{{ .Key }} ({{ len .Pages }})</option>{{ end -}}
       </optgroup>
     </select></label>
+    <a class="tool show-go" id="show-go" href="#" hidden>{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "go") }}</a>
     <div class="search" role="search"{{ if eq $cfg.search false }} hidden{{ end }}>{{ partial "breeze/icon.html" "search" }}<label class="sr-only" for="search">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "filter_posts") }}</label><input id="search" type="search" placeholder="{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "filter_placeholder") }}" autocomplete="off"></div>
   </div>
   <div class="fm">

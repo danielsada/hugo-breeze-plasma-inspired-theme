@@ -1,7 +1,7 @@
 {{- /* More writing: the posts after the headlines, as compact rows, then a row of destinations
   (All posts, each series, each section in another language). cfg: offset (3), count (5), sections, title, links (true). */ -}}
 {{- $cfg := .cfg -}}
-{{- $offset := $cfg.offset | default 3 -}}
+{{- $offset := 3 }}{{ if isset $cfg "offset" }}{{ $offset = $cfg.offset }}{{ end -}}
 {{- $n := $cfg.count | default 5 -}}
 {{- $pages := partial "breeze/primary-posts.html" (dict "sections" $cfg.sections) -}}
 {{- $list := first $n (after $offset $pages) -}}

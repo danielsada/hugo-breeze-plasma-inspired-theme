@@ -75,7 +75,8 @@
       return true;
     };
     var tagName = function (slug) {
-      var a = $('.show [data-f="tag:' + slug + '"]', win) || $('td.tg a[data-f="tag:' + slug + '"]', win);
+      var sel = '[data-f="tag:' + (window.CSS && CSS.escape ? CSS.escape(slug) : slug) + '"]';
+      var a = $('.show li:not(#tagrow) a' + sel, win) || $('td.tg a' + sel, win);
       return a ? (a.dataset.label || a.textContent) : slug;
     };
     var labelFor = function (f) {
@@ -169,11 +170,24 @@
       /* Clear / Show all remove themselves: keep focus on the results heading */
       if (e.target.closest('[data-reset]') && win.contains(e.target)) { reset(); focusTarget(head); }
     });
-    if (sel) sel.addEventListener('change', function () {
-      var o = sel.options[sel.selectedIndex];
-      if (local(sel.value)) setFilter(sel.value, true);
-      else if (o && o.dataset.href) location.href = o.dataset.href;
-    });
+    /* Options that filter in place apply immediately. Options that open another page only navigate on an explicit
+       commit (a pointer pick, Enter, or the "Go" link): arrow keys on a closed <select> fire "change" in some
+       browsers, and moving focus through options must not change the page (WCAG 3.2.2). */
+    if (sel) {
+      var go = $('#show-go', win), viaKey = false;
+      var pending = function () { var o = sel.options[sel.selectedIndex]; return o && !local(sel.value) ? o.dataset.href : ''; };
+      sel.addEventListener('keydown', function (e) {
+        viaKey = true;
+        if (e.key === 'Enter' && pending()) { e.preventDefault(); location.href = pending(); }
+      });
+      sel.addEventListener('pointerdown', function () { viaKey = false; });
+      sel.addEventListener('change', function () {
+        var href = pending();
+        if (!href) { if (go) go.hidden = true; setFilter(sel.value, true); return; }
+        if (!viaKey) { location.href = href; return; }
+        if (go) { go.href = href; go.hidden = false; }
+      });
+    }
     var readHash = function (scroll) {
       var h = decodeURIComponent(location.hash.slice(1)), m = h.match(/^(s|series|tag)=(.+)$/);
       if (/^y\d{4}$/.test(h) && document.getElementById(h)) setFilter('year:' + h.slice(1));

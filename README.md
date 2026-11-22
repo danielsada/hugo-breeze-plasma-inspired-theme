@@ -57,7 +57,7 @@ theme = "hugo-breeze-plasma-inspired-theme"
     path = "github.com/danielsada/hugo-breeze-plasma-inspired-theme"
 ```
 
-Then copy the `[markup]` block from `exampleSite/hugo.toml`. It enables class-based syntax highlighting, the table-of-contents levels and figures for titled images.
+Then copy the `[markup]` block from `exampleSite/hugo.toml`. It enables class-based syntax highlighting, the table-of-contents levels and figures for titled images. Also consider `capitalizeListTitles = false`, which keeps tag and series names as you wrote them.
 
 ## Content model
 
@@ -163,7 +163,7 @@ A section in a different language than the site (`params.lang` in its `_index.md
 
 - **Extra CSS:** create `assets/css/custom.css`. It's appended to the theme's stylesheet.
 - **Head and body hooks:** override `layouts/_partials/hooks/head-end.html` and `hooks/body-end.html`.
-- **Alternative page layouts:** set `params.view: <name>` on any page or section to render it with `layouts/_partials/views/<name>.html`. The theme ships `post`, `page`, `projects`, `archive` and `terms`.
+- **Alternative page layouts:** set `params.view: <name>` on a page or section to render it with `layouts/_partials/views/<name>.html`, which receives the page as its context. The theme ships `post` and `page` (regular pages) and `projects` (any page). `archive` is used by sections and terms, and `terms` by taxonomy pages; both expect what those templates pass them, so they can't be picked with `params.view` on another kind of page.
 - **Any other theme file:** copy it to the same path in your site and edit it.
 
 ## Performance and privacy

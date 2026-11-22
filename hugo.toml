@@ -34,6 +34,7 @@
   # favicon = "favicon.svg"
   # ogimage = "images/og.png"
 
+  wallpaper = "breeze/wallpaper.svg"   # assets/ path, static path, or "none"
   [params.author]
     name = ""
     email = ""
@@ -48,7 +49,6 @@
     [params.colors.dark]
       # accent = "#a77bff"
       # ink = "#c6a8ff"          # keep ≥ 4.5:1 on #1f2226
-  wallpaper = "breeze/wallpaper.svg"   # assets/ path, static path, or "none"
   [params.fonts]
     # sans = '"Inter", system-ui, sans-serif'
     # read = 'Georgia, serif'    # long-form reading face

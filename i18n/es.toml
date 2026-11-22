@@ -26,6 +26,8 @@ other = "Ruta de navegación"
 other = "Todas las entradas"
 [show]
 other = "Mostrar"
+[go]
+other = "Ir →"
 [show_posts]
 other = "Mostrar entradas"
 [tags]
@@ -166,6 +168,15 @@ other = "Más recientes primero"
 
 [say_hi]
 other = "Saluda"
+
+[date_short]
+other = "2 Jan 2006"
+[date_long]
+other = "2 de January de 2006"
+[months]
+other = "enero,febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciembre"
+[months_short]
+other = "ene,feb,mar,abr,may,jun,jul,ago,sept,oct,nov,dic"
 
 [not_found_title]
 other = "Página no encontrada"

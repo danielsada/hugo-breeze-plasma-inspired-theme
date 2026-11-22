@@ -2,7 +2,7 @@
 {{- $x := .project -}}
 {{- $tr := .tr }}
 <tr{{ with $x.id | default ($x.name | anchorize) }} id="{{ . }}"{{ end }}>
-  <td class="nm">{{ partial "breeze/icon.html" (dict "name" ($x.icon | default "box") "class" "pi") }}<b>{{ $x.name }}</b>{{ with $x.status }}&nbsp;<small class="mk">{{ . }}</small>{{ end }}{{ with $x.since }}<span class="d">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "since" "ctx" (dict "Year" .)) }}</span>{{ end }}</td>
+  <td class="nm">{{ partial "breeze/icon.html" (dict "name" ($x.icon | default "box") "class" "pi") }}<b>{{ $x.name }}</b>{{ with $x.since }}<span class="d">{{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "since" "ctx" (dict "Year" .)) }}</span>{{ end }}</td>
   <td class="wh">{{ $x.summary }}{{ with $x.description }}<span class="d">{{ . }}</span>{{ end }}</td>
   <td class="st">{{ with $x.stack }}{{ if reflect.IsSlice . }}{{ delimit . ", " }}{{ else }}{{ . }}{{ end }}{{ end }}</td>
   <td class="ln"><ul class="golinks">

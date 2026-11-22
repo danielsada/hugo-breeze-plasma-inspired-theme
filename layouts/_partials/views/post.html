@@ -30,7 +30,7 @@
     {{- end }}
     <h1>{{ .Title }}</h1>
     <p class="meta">
-      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format $long }}</time>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "breeze/date.html" (dict "date" .Date "fmt" $long "lang" $L.name "long" true) }}</time>
       {{- if ne $cfg.readingtime false }} · {{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "min_read" "ctx" .ReadingTime) }}{{ end }}
       {{- with $series }} · <a href="{{ .term.RelPermalink }}">{{ .term.LinkTitle }}</a>: {{ partial "breeze/t.html" (dict "lang" $tr.lang "key" "series_part" "ctx" (dict "Part" (add .index 1) "Total" .total)) }}{{ end }}
     </p>

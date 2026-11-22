@@ -2,4 +2,5 @@ exampleSite/public/
 exampleSite/resources/
 public/
 resources/_gen/
-.hugo_build.lock.verify/
+.hugo_build.lock
+.verify/

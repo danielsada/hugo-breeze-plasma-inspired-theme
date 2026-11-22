@@ -29,7 +29,7 @@
   {{- range $marks }}&nbsp;<small class="mk">{{ . }}</small>{{ end -}}
   {{- with $p.Description }}<span class="d"{{ if $foreign }} lang="{{ $sec.lang }}"{{ end }}>{{ . }}</span>{{ end -}}
 </td>
-<td class="dt"><time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date | time.Format .short }}</time></td>
+<td class="dt"><time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ partial "breeze/date.html" (dict "date" $p.Date "fmt" .short "lang" .lang) }}</time></td>
 <td class="tg">
   {{- range $i, $t := $terms -}}
     {{- $slug := index $slugs $i -}}
