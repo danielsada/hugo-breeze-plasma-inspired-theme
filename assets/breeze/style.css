@@ -1,4 +1,4 @@
-/* Breeze Plasma — a calm, KDE Plasma / Breeze-inspired Hugo theme.
+/* Breeze Plasma: a calm, KDE Plasma / Breeze-inspired Hugo theme.
    Wallpaper + one translucent left panel (navigation). Everything you read sits on opaque Breeze cards.
    Colours use light-dark(), so a single variable carries both schemes; html[data-scheme] can force one.
    Site config overrides --accent, --accent-ink, --wall, --wallpaper and the font stacks inline (see head.html). */

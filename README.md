@@ -197,6 +197,7 @@ All options live under `[params]`. Every one is optional.
 | `logowidth`, `logoplate`, `logoname` | `64`, `true`, `true` | Logo width in px, whether it sits on a light plate, and whether your name is shown beside it |
 | `colorscheme` | `auto` | `auto`, `light` or `dark` |
 | `favicon`, `ogimage`, `titlesuffix`, `crumbroot` | none | Head and breadcrumb details |
+| `titleseparator` | `" · "` | Goes between the page title and the site title in `<title>` and feed titles, e.g. "Projects · Your Name" |
 | `author.name`, `author.email`, `author.page` | none | Byline, contact and the About link |
 | `colors.light.accent` / `.ink`, `colors.dark.accent` / `.ink` | Purple | Accent colours. `ink` is the text and focus-ring colour; keep it at least 4.5:1 against the card. |
 | `colors.wall` | `#3d6fd6` | Wallpaper base colour |

@@ -1,5 +1,5 @@
 {{- /* Term counts of a taxonomy, scoped to a set of pages. Usage: partial "breeze/term-counts.html" (dict "pages" $pages "taxonomy" "tags")
-  Returns a slice of dict: slug, title, url, count — most used first, then by name. */ -}}
+  Returns a slice of dict: slug, title, url, count; most used first, then by name. */ -}}
 {{- $pages := .pages -}}
 {{- $out := slice -}}
 {{- with index site.Taxonomies .taxonomy -}}

@@ -31,6 +31,7 @@
   logoplate = true               # draw the logo on a small light plate (good for dark-on-transparent logos)
   logoname = true                # show the name next to the logo
   colorscheme = "auto"           # auto | light | dark
+  titleseparator = " · "         # between the page title and the site title (in <title>, feeds)
   # favicon = "favicon.svg"
   # ogimage = "images/og.png"
 

@@ -4,7 +4,7 @@ description: Who Alex Moreno is, what this site is about, and how to say hi.
 params:
   sayhi: true
 ---
-Hello! I’m Alex. I work on developer tools — build systems, code review bots and the small scripts that save a team an hour a week. Before that I spent a few years on call for a payments service, which is where I learned to love [boring dependencies](/blog/boring-dependencies/) and [good runbooks](/blog/sleeping-well-with-on-call/).
+Hello! I’m Alex. I work on developer tools: build systems, code review bots and the small scripts that save a team an hour a week. Before that I spent a few years on call for a payments service, which is where I learned to love [boring dependencies](/blog/boring-dependencies/) and [good runbooks](/blog/sleeping-well-with-on-call/).
 
 Outside work I run a [small home lab](/series/home-lab/), keep a commute tracker alive, and drink more coffee than I should. I write in English and, every now and then, [en español](/notas/).
 

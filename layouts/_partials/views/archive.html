@@ -48,6 +48,7 @@
 
 {{- $i18n := dict
   "site" (site.Params.titlesuffix | default site.Title)
+  "sep" (partial "breeze/title-separator.html" $p)
   "order" (partial "breeze/t.html" (dict "lang" $tr.lang "key" $orderKey))
   "post" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "js_post"))
   "posts" (partial "breeze/t.html" (dict "lang" $tr.lang "key" "js_posts"))

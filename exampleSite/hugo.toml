@@ -108,7 +108,7 @@ capitalizeListTitles = false   # keep tag/series names as written ("homelab", no
     collapse = true
 
   # Home: widgets in reading order. On wide screens "main" is the left column and "side" the right one;
-  # on phones they stack (main first). Widgets: intro, latest, recent, project, talk, section — or your own.
+  # on phones they stack (main first). Widgets: intro, latest, recent, series, project, talk, section, or your own.
   [params.home]
     [[params.home.main]]
       widget = "intro"

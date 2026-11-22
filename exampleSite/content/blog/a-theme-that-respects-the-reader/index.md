@@ -1,7 +1,7 @@
 ---
 title: A theme that respects the reader
 date: 2026-06-02
-description: What I wanted from a blog theme — calm pages, real links, no surprises — and the small decisions that got me there.
+description: What I wanted from a blog theme (calm pages, real links, no surprises) and the small decisions that got me there.
 tags: [hugo, css, accessibility, web]
 ---
 
@@ -15,9 +15,9 @@ Long-form text is happiest at around 65 characters per line. The reading column 
 
 > Typography exists to honor content.
 >
-> — Robert Bringhurst
+> Robert Bringhurst
 
-A blockquote is a thin accent rule and italics — nothing more.
+A blockquote is a thin accent rule and italics, nothing more.
 
 ### Lists, nested
 
@@ -83,4 +83,4 @@ No web fonts, no analytics, no comments widget, no cookie banner. A [privacy-fri
 
 ---
 
-If you want the same theme, it's open source — see the [projects page](/projects/).
+If you want the same theme, it's open source: see the [projects page](/projects/).

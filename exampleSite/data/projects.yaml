@@ -10,7 +10,7 @@
   featured: true
   icon: chart
   summary: Door-to-door commute times, charted.
-  pitch: A tiny service that has logged my commute every 15 minutes for a year — now it tells me when to leave.
+  pitch: A tiny service that has logged my commute every 15 minutes for a year. Now it tells me when to leave.
   description: Polls a routing API every 15 minutes, stores the travel times in SQLite and draws a week-by-hour heat map, so the best departure window is obvious at a glance.
   stack: [Go, SQLite, Hugo]
   url: https://example.org/commute/

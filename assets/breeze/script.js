@@ -1,4 +1,4 @@
-/* Breeze Plasma theme — progressive enhancement only. Without JS every link is a real page. */
+/* Breeze Plasma theme: progressive enhancement only. Without JS every link is a real page. */
 (function () {
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
@@ -58,7 +58,7 @@
     var status = $('#status', win), clearBtn = $('#clear', win), empty = $('#empty', win);
     var crumbBase = $('#crumb-base', win), crumb = $('#crumb-f', win);
     var head = $('#list-h', win), sub = $('#list-sub', win), subBase = sub ? sub.innerHTML : '';
-    var baseLabel = head.textContent, siteTitle = I.site || '';
+    var baseLabel = head.textContent, siteTitle = I.site || '', sep = I.sep || ' \u00b7 ';
     var label = {};
     links.forEach(function (a) { if (a.dataset.label) label[a.dataset.f] = a.dataset.label; });
     var hay = rows.map(function (r) { return (r.textContent + ' ' + (r.dataset.tags || '')).toLowerCase(); });
@@ -145,7 +145,7 @@
       }
       var text = labelFor(f);
       head.textContent = text;
-      document.title = text + (siteTitle ? ' \u2014 ' + siteTitle : '');
+      document.title = text + (siteTitle ? sep + siteTitle : '');
       if (crumb) {
         crumb.hidden = f === base;
         $('span', crumb).textContent = k === 'year' ? v : k === 'tag' ? tagName(v) : text;

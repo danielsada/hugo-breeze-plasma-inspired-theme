@@ -10,7 +10,7 @@ The first two parts were about *running* things. This one is about getting them 
 
 ## The rule
 
-Every backup job has a matching restore job, and the restore job runs on a schedule. If the restore fails, I get an email — the same way I would if the backup failed.
+Every backup job has a matching restore job, and the restore job runs on a schedule. If the restore fails, I get an email, the same way I would if the backup failed.
 
 ## The setup
 

@@ -26,6 +26,6 @@ A nightly job turns the table into a JSON file, and a static page draws a heat m
 
 ## What I learned
 
-Leaving at 7:40 instead of 8:00 saves eleven minutes on average — and, more importantly, makes the slowest days much less slow.
+Leaving at 7:40 instead of 8:00 saves eleven minutes on average. More importantly, it makes the slowest days much less slow.
 
 The live chart is on the [projects page](/projects/).

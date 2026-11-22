@@ -2,7 +2,7 @@
   Usage: partial "breeze/t.html" (dict "key" "show" "lang" "es" "ctx" 3)
   For the site's own language this is just T (so i18n/<lang>.toml in your site overrides it).
   For another language (e.g. a Spanish section on an English site) the string comes from
-  data/breeze/i18n/<lang>.toml — the theme mounts its i18n/ there; your site can add its own file there too. */ -}}
+  data/breeze/i18n/<lang>.toml. The theme mounts its i18n/ there; your site can add its own file there too. */ -}}
 {{- $key := .key -}}
 {{- $ctx := .ctx -}}
 {{- $lang := .lang | default site.Language.Name -}}
