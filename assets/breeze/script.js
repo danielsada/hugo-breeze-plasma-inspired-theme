@@ -33,7 +33,7 @@
       if (!isOpen()) return;
       if (e.key === 'Escape') { setPanel(false); return; }
       if (e.key !== 'Tab') return;
-      var f = $$('a[href], button', panel).filter(function (el) { return el.offsetParent; });
+      var f = $$('a[href], button, summary', panel).filter(function (el) { return el.offsetParent; });
       var first = f[0], last = f[f.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }

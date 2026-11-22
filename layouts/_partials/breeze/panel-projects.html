@@ -18,7 +18,8 @@
     {{- $url := $x.url -}}
     {{- if not $url }}{{ with $x.writeup }}{{ with site.GetPage . }}{{ $url = .RelPermalink }}{{ end }}{{ end }}{{ end -}}
     {{- if and (not $url) $projectsPage }}{{ $url = printf "%s#%s" $projectsPage.RelPermalink ($x.id | default ($x.name | anchorize)) }}{{ end -}}
-    {{- $rank := printf "%d-%06d-%06d" (cond (eq $x.featured true) 0 1) (sub 999999 (int ($x.since | default 0))) $i -}}
+    {{- $y := 0 }}{{ with findRE `\d{4}` (string ($x.since | default "")) 1 }}{{ $y = int (index . 0) }}{{ end -}}
+    {{- $rank := printf "%d-%06d-%06d" (cond (eq $x.featured true) 0 1) (sub 999999 $y) $i -}}
     {{- $rows = $rows | append (dict "rank" $rank "name" $x.name "icon" ($x.icon | default "box") "url" $url "live" (eq $x.status $live) "status" $x.status) -}}
   {{- end -}}
   {{- $rows = sort $rows "rank" -}}
