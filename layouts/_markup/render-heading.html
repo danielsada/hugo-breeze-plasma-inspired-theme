@@ -2,7 +2,7 @@
   With params.post.shiftheadings, content headings move one level down ("# " renders as <h2>), so a post written
   with "#" headings keeps the page title as its only <h1> and its sections appear in "On this page". */ -}}
 {{- $cfg := site.Params.post | default (dict) -}}
-{{- $lvl := add .Level (partialCached "breeze/heading-shift.html" .Page .Page.RelPermalink) -}}
+{{- $lvl := add .Level (partialCached "breeze/heading-shift.html" .Page (printf "%s|%s" .Page.Path .Page.Language.Name)) -}}
 {{- if gt $lvl 6 }}{{ $lvl = 6 }}{{ end -}}
 <h{{ $lvl }} id="{{ .Anchor }}"{{ with .Attributes.class }} class="{{ . }}"{{ end }}>{{ .Text }}
 {{- if and (ge $lvl 2) (ne $cfg.anchors false) -}}

@@ -9,7 +9,7 @@
   {{- $range := $cfg.toclevels | default (slice 2 3) -}}
   {{- $lo := index $range 0 -}}
   {{- $hi := index $range (sub (len $range) 1) -}}
-  {{- $shift := partialCached "breeze/heading-shift.html" . .RelPermalink -}}
+  {{- $shift := partialCached "breeze/heading-shift.html" . (printf "%s|%s" .Path .Language.Name) -}}
   {{- $items := slice -}}
   {{- range partial "breeze/headings.html" .Fragments.Headings -}}
     {{- $lvl := add .level $shift -}}

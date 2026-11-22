@@ -77,8 +77,8 @@
     links.forEach(function (a) { if (a.dataset.label) label[a.dataset.f] = a.dataset.label; });
     /* Search matches at the start of words (in the title, description, marks and tags), never inside a word:
        "ai" finds "AI tools" but not "against". Accents are ignored: "espanol" finds "español". */
-    var fold = function (s) { return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); };
-    var words = function (s) { return fold(s).split(/[^\p{L}\p{N}]+/u).filter(Boolean); };
+    var fold = function (s) { return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').normalize('NFC').toLowerCase(); };
+    var words = function (s) { return fold(s).split(/[^\p{L}\p{M}\p{N}]+/u).filter(Boolean); };
     var hay = rows.map(function (r) {
       var nm = $('td.nm', r), tg = $('td.tg', r);
       return words((nm ? nm.textContent : '') + ' ' + (tg ? tg.textContent : '') + ' ' + (r.dataset.tags || '').replace(/-/g, ' '));
@@ -143,7 +143,7 @@
       win.classList.toggle('is-filtered', parts.length > 0);
       clearBtn.hidden = !parts.length;
       empty.hidden = n > 0;
-      saveQuery(q);
+      saveSoon();
     };
     /* The search text lives in the URL (?q=…, replaced, not pushed), next to the filter in the hash, so Back
        from a result, reload and shared links all bring the same view back. */
@@ -153,10 +153,18 @@
       var s = p.toString();
       return location.pathname + (s ? '?' + s : '') + (h ? '#' + h : '');
     };
-    var saveQuery = function (q) {
-      var u = urlFor(filter, q);
-      if (u !== location.pathname + location.search + location.hash) history.replaceState(history.state, '', u);
+    /* Browsers cap history updates (Safari: 100 per 30 s), so the URL follows the search box after a pause,
+       and right away when the reader clicks something or leaves the page. */
+    var timer = 0;
+    var history_ = function (method, u) { try { history[method](method === 'pushState' ? null : history.state, '', u); } catch (e) { /* rate-limited */ } };
+    var saveQuery = function () {
+      clearTimeout(timer); timer = 0;
+      var u = urlFor(filter, input.value.trim());
+      if (u !== location.pathname + location.search + location.hash) history_('replaceState', u);
     };
+    var saveSoon = function () { clearTimeout(timer); timer = setTimeout(saveQuery, 400); };
+    document.addEventListener('click', function () { if (timer) saveQuery(); }, true);
+    addEventListener('pagehide', function () { if (timer) saveQuery(); });
     var setFilter = function (f, push) {
       filter = f;
       var k = kind(f), v = val(f), known = links.some(function (a) { return a !== tagLink && a.dataset.f === f; });
@@ -189,8 +197,8 @@
         $('span', crumb).textContent = k === 'year' ? v : k === 'tag' ? tagName(v) : text;
         if (crumbBase) { if (f === base) crumbBase.setAttribute('aria-current', 'page'); else crumbBase.removeAttribute('aria-current'); }
       }
-      if (push) history.pushState(null, '', urlFor(f, input.value.trim()));
       apply();
+      if (push) { clearTimeout(timer); timer = 0; history_('pushState', urlFor(f, input.value.trim())); }
     };
     var reset = function () { input.value = ''; setFilter(base, filter !== base); };
     document.addEventListener('click', function (e) {

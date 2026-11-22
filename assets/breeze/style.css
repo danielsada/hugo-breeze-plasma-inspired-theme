@@ -556,7 +556,9 @@ html:not(.js) .search { display: none; }
 .prose > img, .page > img, .prose > a:has(> img:only-child), .page > a:has(> img:only-child) { display: block; width: fit-content; max-width: 100%; margin: 0 0 1.15em; }
 .prose > a > img { display: block; }
 /* long URLs, paths and identifiers wrap instead of widening the page on phones */
-.prose a, .prose :not(pre) > code, .prose td, .prose th, .page a, .page :not(pre) > code, .lead, .meta { overflow-wrap: anywhere; }
+.prose a, .prose :not(pre) > code, .page a, .page :not(pre) > code, .lead, .meta { overflow-wrap: anywhere; }
+/* inside tables only break what doesn't fit, so wide tables still scroll sideways instead of splitting words */
+.prose :is(td, th), .prose :is(td, th) :is(a, code) { overflow-wrap: break-word; }
 .page figure { margin: 0 0 14px; }
 .prose figure img, .page figure img { border: 1px solid var(--line); }
 .prose figcaption, .page figcaption { margin-top: 8px; font-family: var(--sans); font-size: .875rem; color: var(--muted); }
