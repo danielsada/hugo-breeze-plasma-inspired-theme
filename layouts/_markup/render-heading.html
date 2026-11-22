@@ -1,0 +1,4 @@
+{{- /* Headings get a stable id and (params.post.anchors) a quiet "#" self-link. */ -}}
+{{- $cfg := site.Params.post | default (dict) -}}
+<h{{ .Level }} id="{{ .Anchor }}"{{ with .Attributes.class }} class="{{ . }}"{{ end }}>{{ .Text }}{{ if and (ge .Level 2) (ne $cfg.anchors false) }}<a class="anchor" href="#{{ .Anchor }}" aria-label="{{ T "link_to_section" }}">#</a>{{ end }}</h{{ .Level }}>
+{{- /* trim */ -}}
