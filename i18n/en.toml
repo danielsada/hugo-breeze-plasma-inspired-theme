@@ -138,6 +138,13 @@ other = "Latest talk"
 other = "Companion post:"
 [see_all]
 other = "See all ({{ .Count }}) →"
+[series_heading]
+other = "Series"
+[parts]
+one = "{{ .Count }} part"
+other = "{{ .Count }} parts"
+[all_projects_count]
+other = "All projects ({{ .Count }}) →"
 
 # Video facade
 [play]

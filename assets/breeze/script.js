@@ -39,6 +39,9 @@
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
     mq.addEventListener('change', function () { if (!mq.matches && isOpen()) setPanel(false, true); });
+    /* the drawer has no outline, so the Projects box needn't start collapsed there */
+    var pproj = $('.pproj', panel);
+    if (pproj && mq.matches) pproj.open = true;
   }
 
   /* Archive window. Filters: all · s:<section> · series:<slug> · tag:<slug> · year:<yyyy>.

@@ -29,8 +29,8 @@ hugo server -s exampleSite
 `exampleSite/` exercises every feature:
 
 - an English blog and a Spanish `notas` section;
-- a three-part series, tags and years;
-- projects, a talk and an About page;
+- two series (three parts and two parts), tags and years;
+- 12 projects (with the panel's Projects box), a talk and an About page;
 - code, quotes, tables, figures and a table of contents.
 
 `exampleSite/hugo.toml` lists every option with its default.
@@ -106,6 +106,7 @@ All options live under `[params]`. Every one is optional.
 | `images.maxwidth`, `images.quality` | `960`, `75` | Settings for Markdown images, which are converted to WebP |
 | `rss.panel` | `true` | Shows the RSS icon in the panel |
 | `projects.page`, `projects.statuses` | `/projects`, `[Live, Beta, Paused, Archived]` | The projects page and the order of its status groups |
+| `panel.projects.enable`, `.limit`, `.title`, `.pages`, `.collapse`, `.live` | `false`, `5`, "Projects", `all`, `true`, first status | The panel's Projects box (see Navigation) |
 | `home.main`, `home.side` | intro, latest, recent / project, talk | The home widgets, in order (see below) |
 
 ### Navigation
@@ -121,6 +122,12 @@ All options live under `[params]`. Every one is optional.
 
 Without a main menu, Places lists the All-posts page and every main section. When you're on a post, the Places entry it belongs to is marked current.
 
+**Projects box.** With `[params.panel.projects] enable = true`, the panel also lists your projects from `data/projects.yaml` below Places (and below "On this page" on posts). It shows compact rows — icon, name and a green dot for the `live` status — featured first, then newest (`since`) first, up to `limit`. When there are more, it adds "All projects (N) →". Rows link to the project's `url`, else its `writeup`, else its row on the projects page.
+
+- The box is a collapsible section with its own scroll area, so 10–20 projects never push Places out of place.
+- On posts it starts collapsed (`collapse = false` to keep it open), because the outline needs the room. Set `pages = "nonpost"` to leave it off posts entirely. In the mobile drawer it starts open.
+- It complements, rather than replaces, the home `project` card and the projects page. Keep a Places entry for `/projects` too: it's the main way there, and it's marked current on that page.
+
 ### Home widgets
 
 ```toml
@@ -131,6 +138,8 @@ Without a main menu, Places lists the All-posts page and every main section. Whe
   count = 3
 [[params.home.main]]
   widget = "recent"   # offset, count, sections, title, links = false
+[[params.home.main]]
+  widget = "series"   # title, sort = "latest" | "name", limit, counts = true, date = "latest" | "first" | "none"
 [[params.home.side]]
   widget = "project"  # title
 [[params.home.side]]
@@ -140,7 +149,7 @@ Without a main menu, Places lists the All-posts page and every main section. Whe
   section = "notas"
 ```
 
-Add `enable = false` to hide a widget.
+Add `enable = false` to hide a widget. The `series` widget lists every series (with at least `series.min` posts): name, number of parts and the date of its latest (or first) part. It is left out when there are none.
 
 To add your own widget, create `layouts/_partials/home/<name>.html` in your site. It's called with `(dict "page" . "cfg" <its table>)`. The `main` widgets form the left column on wide screens. On phones they come first, followed by the `side` widgets.
 

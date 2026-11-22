@@ -90,6 +90,16 @@
     page = "/projects"
     statuses = ["Live", "Beta", "Paused", "Archived"]
 
+  # "Projects" box in the left panel (off by default). Compact rows from data/projects.yaml, featured first,
+  # then newest. On posts it sits under "On this page", collapsed. pages = "all" | "nonpost".
+  [params.panel.projects]
+    enable = false
+    limit = 5
+    # title = "Projects"
+    pages = "all"
+    collapse = true              # start collapsed on posts
+    # live = "Live"              # status shown as a green dot (default: the first of projects.statuses)
+
   # Home widgets: rendered in this order; set enable = false to hide one.
   # Add your own by creating layouts/_partials/home/<widget>.html in your site.
   [params.home]

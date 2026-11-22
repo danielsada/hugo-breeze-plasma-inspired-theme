@@ -98,7 +98,14 @@ capitalizeListTitles = false   # keep tag/series names as written ("homelab", no
 
   [params.projects]
     page = "/projects"
-    statuses = ["Live", "Beta", "Archived"]
+    statuses = ["Live", "Beta", "Paused", "Archived"]
+
+  # "Projects" box in the left panel, on every page (collapsed under "On this page" on posts).
+  [params.panel.projects]
+    enable = true
+    limit = 5
+    pages = "all"                # all | nonpost
+    collapse = true
 
   # Home: widgets in reading order. On wide screens "main" is the left column and "side" the right one;
   # on phones they stack (main first). Widgets: intro, latest, recent, project, talk, section — or your own.
@@ -112,6 +119,12 @@ capitalizeListTitles = false   # keep tag/series names as written ("homelab", no
       widget = "recent"
       offset = 3
       count = 5
+    [[params.home.main]]
+      widget = "series"
+      sort = "latest"            # latest | name
+      # limit = 5
+      counts = true
+      date = "latest"            # latest | first | none
     [[params.home.side]]
       widget = "project"
     [[params.home.side]]

@@ -43,3 +43,59 @@
   summary: A generative pixel-art garden that grew one plant per commit.
   description: A weekend experiment that turned a repository's history into a slowly growing garden. Retired when the repository moved.
   stack: [TypeScript, Canvas]
+
+# More entries, so the panel's Projects box and the projects page show how they scale (10+ projects).
+- name: Runbook Kit
+  status: Live
+  since: 2025
+  icon: toc
+  summary: Markdown runbook templates and a linter that keeps them short.
+  stack: [Go, Markdown]
+  writeup: /blog/runbooks-that-fit-on-a-phone
+- name: Homelab Backups
+  status: Live
+  since: 2026
+  icon: folder
+  summary: Nightly restic snapshots with a monthly restore test.
+  stack: [restic, Bash, systemd]
+  writeup: /blog/home-lab-part-3-backups
+- name: Shelf
+  status: Beta
+  since: 2026
+  icon: blog
+  summary: A tiny reading list that syncs through a Git repository.
+  stack: [TypeScript, Git]
+  url: https://example.org/shelf/
+- name: Tide Table
+  status: Beta
+  since: 2025
+  icon: chart
+  summary: Local tide predictions as a calm, printable page.
+  stack: [Python, SVG]
+  url: https://example.org/tides/
+- name: Notas CLI
+  status: Live
+  since: 2024
+  icon: notas
+  summary: Daily plain-text notes from the terminal, with fast search.
+  stack: [Rust]
+  url: https://github.com/example/notas-cli
+  urllabel: Source
+- name: Calm Status
+  status: Archived
+  since: 2022
+  icon: globe
+  summary: A status page that only says something when something is wrong.
+  stack: [Hugo]
+- name: Commit Haiku
+  status: Archived
+  since: 2020
+  icon: terminal
+  summary: Turned commit messages into haiku. It was not useful.
+  stack: [Python]
+- name: Map Pins
+  status: Paused
+  since: 2023
+  icon: link
+  summary: Share a list of places as a single static page.
+  stack: [Go, Leaflet]

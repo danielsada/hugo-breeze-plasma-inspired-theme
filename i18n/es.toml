@@ -134,6 +134,13 @@ other = "Última charla"
 other = "Entrada relacionada:"
 [see_all]
 other = "Ver todas ({{ .Count }}) →"
+[series_heading]
+other = "Series"
+[parts]
+one = "{{ .Count }} parte"
+other = "{{ .Count }} partes"
+[all_projects_count]
+other = "Todos los proyectos ({{ .Count }}) →"
 
 [play]
 other = "Reproducir: {{ .Title }}"
